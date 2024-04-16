@@ -92,8 +92,12 @@ def main():
                             genre_btn = driver.find_element(By.XPATH,"""//*[@id="d_chart_search"]/div/div/div[5]/div[1]/ul/li[1]""")
                             genre_btn.click()
                             search_btn = driver.find_element(By.XPATH,"""//*[@id="d_srch_form"]/div[2]/button""")
-                            search_btn.click()
+                            search_btn.click() 
                             time.sleep(1)
+                            under_50_btn = driver.find_element(By.XPATH,"""//*[@id="frm"]/div[2]/span/a""")
+                            under_50_btn.click()
+                            time.sleep(1)
+                            
                         except NoSuchElementException:
                             print(f"{year}년 {month}월 {week}주차의 장르종합 데이터가 존재하지 않습니다.")
                             continue
@@ -135,6 +139,9 @@ def main():
                             genre_btn.click()
                             search_btn = driver.find_element(By.XPATH,"""//*[@id="d_srch_form"]/div[2]/button""")
                             search_btn.click()
+                            time.sleep(1)
+                            under_50_btn = driver.find_element(By.XPATH,"""//*[@id="frm"]/div[2]/span/a""")
+                            under_50_btn.click()
                             time.sleep(1)
                         except NoSuchElementException:
                             print(f"{year}년 {month}월 {week}주차의 장르종합 데이터가 존재하지 않습니다.")
