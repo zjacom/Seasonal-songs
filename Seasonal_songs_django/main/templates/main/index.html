@@ -8,16 +8,12 @@
         <title>봄</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/sakura.css' %}">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     </head>
     <body>
-        <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
-        <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
-        <br>
-        <a href="{% url 'twenty' %}" class="btn-de black rounded">2 0 2 0</a>
-        <a href="{% url 'twentyone' %}" class="btn-de black rounded">2 0 2 1</a>
-        <a href="{% url 'twentytwo' %}" class="btn-de black rounded">2 0 2 2</a>
-        <a href="{% url 'twentythree' %}" class="btn-de black rounded">2 0 2 3</a>
-        <a href="{% url 'index' %}" class="btn-de black rounded">2 0 2 4</a>
+        {% include 'header.html' %}
+        {% include 'category_s.html' %}
 
         <br><br>
         <div class="parent" >
@@ -41,6 +37,17 @@
         <br>
         <table style="margin-left:auto;margin-right:auto;"> 
             <thead>
+                <th>가수</th><th>노래 제목</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>버스커 버스커</td><td>벚꽃 엔딩</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table style="margin-left:auto;margin-right:auto;"> 
+            <thead>
                 <th>연도</th><th>벚꽃 개화 날짜</th><th>기온</th><th>음원 첫 등장일</th>
             </thead>
             <tbody>
@@ -50,10 +57,7 @@
             </tbody>
         </table>
 
-        <audio autoplay="autoplay" controls="controls">
-            <source src="{% static '/audio/No.9_Esther’s Waltz - Esther Abrami.mp3' %}" 
-            type="audio/mpeg" >
-        </audio>
+        {% include 'footer.html' %}
 
         <div id="sakura-container"></div>
         <script type="text/javascript" src="/static/javascript/sakura.js"></script>

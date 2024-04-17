@@ -1,0 +1,59 @@
+<!--header.html-->
+{% load static %}
+<div style="text-align: center;">
+    <img style="cursor: pointer;" id="open_detail_page" 
+            src="{% static '/images/modal_icon.png' %}" width="50" height="50">
+    
+    <br>
+    <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
+    <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
+    <!-- 모달 -->
+    <div id="first_modal" class="modal_overlay">
+        <div class="modal_window">
+            <div>
+                <!-- 모달 상단 구현하기 -->
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div style="width: 40px;">
+                        
+                    </div>
+                    <div class="stroke">
+                        <h2>세부 사항</h2> 
+                    </div>    
+                    <div>
+                        <img style="cursor: pointer; width: 40px; height: 40px;" id="return_main_page" 
+                            src="{% static '/images/close_icon.png' %}">
+                    </div>
+                </div>
+
+                <!-- 구분선 -->
+                <hr>
+                
+                <!-- 모달 바디 -->
+                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div class="modal_box">
+                        <p>그래프가 들어갈 자리입니다.</p>
+                    </div>
+                    <div class="modal_box">
+                        <p>명예의 전당이 들어갈 자리입니다.</p>
+                    </div>
+                    <div class="modal_box">
+                        <p>노래 선정 이유가 들어갈 자리입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#open_detail_page').click(function (){
+            $('#first_modal').css({
+                display : 'flex'
+            })
+        })
+
+        $('#return_main_page').click(function (){
+            $('#first_modal').css({
+                display : 'none'
+            })
+        })
+    </script>
+</div>

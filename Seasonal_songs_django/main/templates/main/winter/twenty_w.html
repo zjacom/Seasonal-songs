@@ -7,14 +7,11 @@
         content="width=device-width, initial-scale=1.0">
         <title>2020년</title>
         <link rel="stylesheet" href="{% static 'css/style_winter.css' %}">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     </head>
     <body>
-        <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
-        <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
-        <br>
-        <a href="{% url 'twenty_w' %}" class="btn-de black rounded">2 0 2 0</a>
-        <a href="{% url 'twentyone_w' %}" class="btn-de black rounded">2 0 2 1</a>
-        <a href="{% url 'twentytwo_w' %}" class="btn-de black rounded">2 0 2 2</a>
-        <a href="{% url 'winter' %}" class="btn-de black rounded">2 0 2 3</a>
+        {% include 'header.html' %}
+        {% include 'category_w.html' %}
     
+    </body>
 </html>
