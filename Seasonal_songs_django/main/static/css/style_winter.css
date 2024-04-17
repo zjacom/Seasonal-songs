@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'GangwonEdu_OTFBoldA';
+    text-align: center;
+    margin-top: 30px;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+.parent {
+    margin: 1px;
+    padding: 10px;
+    text-align: center;
+}
+.child {
+    display: inline-block;
+    border-radius: 10px;
+    margin: 15px;
+    border: 1.5px solid rgb(103, 103, 103);
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.box {
+    border: 1.5px solid rgb(103, 103, 103);
+    border-radius: 10px;
+    height: 200px;
+    margin-left: 290px;
+    margin-right: 290px;
+}
+
+.rounded {
+    border-radius: 10px;
+}
+
+  /* default button style */
+.btn {
+    position: relative;
+    border: 0;
+    padding: 20px 100px;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    margin:15px;
+}
+
+.btn-de {
+    position: relative;
+    border: 0;
+    padding: 10px 20px;
+    display: inline-block;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    margin-right: 1px;
+    margin-top: 40px;
+}
+
+.btn:active {
+    top: 4px; 
+}
+.btn.pink {background-color: #ffc0cb;}
+.btn.pink {box-shadow:0px 4px 0px #ffa4b3;}
+.btn.pink:active {box-shadow: 0 0 #ffabb9; background-color: #ffabb9;}
+
+.btn.sky {background-color: #69caff;}
+.btn.sky {box-shadow:0px 4px 0px #59aedc;}
+.btn.sky:active {box-shadow: 0 0 #9b9b9b; background-color: #55aedd;}
+
+.btn-de.black {background-color: #f9f9f9;}
+.btn-de.black {box-shadow:0px 4px 0px #c9c9c9;}
+.btn-de.black:active {box-shadow: 0 0 #cecece; background-color: #cecece;}
+
+
+table {
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 51%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+thead {
+    font-weight: bold;
+    color: #fff;
+    background: #6ad0ff;
+}
+    
+td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+}
+    
+td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+}

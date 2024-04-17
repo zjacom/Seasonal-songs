@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>봄</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
+        <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
+        <br>
+        <a href="{% url 'twenty' %}" class="btn-de black rounded">2 0 2 0</a>
+        <a href="{% url 'twentyone' %}" class="btn-de black rounded">2 0 2 1</a>
+        <a href="{% url 'twentytwo' %}" class="btn-de black rounded">2 0 2 2</a>
+        <a href="{% url 'twentythree' %}" class="btn-de black rounded">2 0 2 3</a>
+        <a href="{% url 'index' %}" class="btn-de black rounded">2 0 2 4</a>
+
+        <br><br>
+        <div class="parent" >
+            <div class="child">
+                <h4>올해 차트 봄의 시작은 ?!</h4>
+                <img src="{% static '/images/spring_start.jpg' %}" width="220px" height="150">
+                <p>3월 1주</p>
+            </div>
+            <div class="child">
+                <h4>올해 차트 봄의 끝은 ?!</h4>
+                <img src="{% static '/images/spring_end.jpg' %}" width="220px" height="150">
+                <p>4월 2주</p>
+            </div>
+        </div>
+
+        <br>
+        <div class="box">
+            <p>그래프 들어갈 자리입니다.</p>
+        </div>
+
+        <br>
+        <table style="margin-left:auto;margin-right:auto;"> 
+            <thead>
+                <th>연도</th><th>벚꽃 개화 날짜</th><th>기온</th><th>음원 첫 등장일</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024년</td><td>4월3일</td><td>14℃</td><td>2024년 3월 2주</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+    
+</html>

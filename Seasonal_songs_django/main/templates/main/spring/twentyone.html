@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>2021년</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
+        <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
+        <br>
+        <a href="{% url 'twenty' %}" class="btn-de black rounded">2 0 2 0</a>
+        <a href="{% url 'twentyone' %}" class="btn-de black rounded">2 0 2 1</a>
+        <a href="{% url 'twentytwo' %}" class="btn-de black rounded">2 0 2 2</a>
+        <a href="{% url 'twentythree' %}" class="btn-de black rounded">2 0 2 3</a>
+        <a href="{% url 'index' %}" class="btn-de black rounded">2 0 2 4</a>
+    </body>
+    
+</html>
