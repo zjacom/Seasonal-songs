@@ -7,6 +7,7 @@
         content="width=device-width, initial-scale=1.0">
         <title>봄</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sakura.css' %}">
     </head>
     <body>
         <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
@@ -49,6 +50,19 @@
             </tbody>
         </table>
 
-    </body>
+        <audio autoplay="autoplay" controls="controls">
+            <source src="{% static '/audio/No.9_Esther’s Waltz - Esther Abrami.mp3' %}" 
+            type="audio/mpeg" >
+        </audio>
+
+        <div id="sakura-container"></div>
+        <script type="text/javascript" src="/static/javascript/sakura.js"></script>
+        <script>
+            // 페이지 로드 후 실행
+            window.onload = function() {
+                // Sakura 클래스를 사용하여 벚꽃 효과 초기화
+                new Sakura('#sakura-container');
+            };
+        </script>
     
 </html>

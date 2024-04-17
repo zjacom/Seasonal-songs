@@ -9,6 +9,8 @@ body {
     font-family: 'GangwonEdu_OTFBoldA';
     text-align: center;
     margin-top: 30px;
+    background: radial-gradient(ellipse at bottom, #ffffff 0%, #d5f4fe 100%);
+    filter: drop-shadow(0 0 10px rgb(255, 255, 255));
 }
 
 a {
@@ -27,6 +29,7 @@ a {
     border: 1.5px solid rgb(103, 103, 103);
     padding-left: 30px;
     padding-right: 30px;
+    background-color: white;
 }
 
 .box {
@@ -35,6 +38,7 @@ a {
     height: 200px;
     margin-left: 290px;
     margin-right: 290px;
+    background-color: white;
 }
 
 .rounded {
@@ -87,7 +91,7 @@ table {
     border-radius: 5px;
     overflow: hidden;
     margin-top: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 thead {
@@ -104,4 +108,8 @@ td, th {
 td {
     border-bottom: 1px solid rgba(0,0,0,.1);
     background: #fff;
+}
+
+audio {
+    margin-bottom: 100px;
 }
