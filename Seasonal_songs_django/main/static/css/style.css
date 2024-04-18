@@ -118,6 +118,7 @@ a {
 
 .main_image {
     position: relative;
+    margin-bottom: 50px;
 }
 .main_image_text {
     position: absolute;

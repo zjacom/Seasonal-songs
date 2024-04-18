@@ -46,10 +46,10 @@
         </table>
 
         <div class="main_image_winter">
-            <img src="{% static '/images/winter_start.jpg' %}" width="600px" height="400px">
+            <img src="{% static '/images/winter_start.jpg' %}" width="500px" height="300px" style="margin-bottom: 50px;">
             <h4 style="position: absolute;
-                top: 82%;
-                left: 37%;
+                top: 80%;
+                left: 39%;
                 transform: translate( -50%, -50% );
                 color: rgb(255, 255, 255);">
                 온도 : 20℃<br />
@@ -57,6 +57,9 @@
                 벚꽃 개화 날짜 : 4월 3일
             </h4>
         </div>
+
+        {% include 'footer_w.html' %}
+
         <!-- <table style="margin-left:auto;margin-right:auto;"> 
             <thead>
                 <th>첫눈 날짜</th><th>기온</th><th>D-DAY</th>
