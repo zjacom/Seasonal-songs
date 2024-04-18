@@ -1,0 +1,123 @@
+<!--header.html-->
+{% load static %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div style="text-align: center;">
+    <img style="cursor: pointer;" id="open_detail_page" 
+            src="{% static '/images/modal_icon.png' %}" width="50" height="50">
+    
+    <br>
+    <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
+    <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
+    <!-- 모달 -->
+    <div id="first_modal" class="modal_overlay">
+        <div class="modal_window">
+            <div>
+                <!-- 모달 상단 구현하기 -->
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div style="width: 40px;">
+                        
+                    </div>
+                    <div class="stroke">
+                        <h2>세부 사항</h2> 
+                    </div>    
+                    <div>
+                        <img style="cursor: pointer; width: 40px; height: 40px;" id="return_main_page" 
+                            src="{% static '/images/close_icon.png' %}">
+                    </div>
+                </div>
+
+                <!-- 구분선 -->
+                <hr>
+                
+                <!-- 모달 바디 -->
+                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div id="graph"></div>
+                    <div>
+                        <h3>명예의 전당</h3>
+                        <div id="hall_of_frame"></div>
+                    </div>
+                    <div>
+                        <h3>노래 선정 이유</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // AJAX 호출을 처리하는 함수
+        function fetchData(url, successCallback, errorCallback) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: successCallback,
+                error: errorCallback
+            });
+        }
+
+        // 그래프를 생성하는 함수
+        function createGraph(data) {
+            var xValues = [];
+            var yValues = [];
+
+            for (var key in data) {
+                xValues.push(key);
+                yValues.push(data[key]);
+            }
+
+            var graph_data = [{
+                x: xValues,
+                y: yValues,
+                type: 'bar'
+            }];
+
+            var layout = {
+                title: '연도별 차트인 한 겨울 노래 개수',
+                xaxis: {
+                    title: '연도'
+                },
+                yaxis: {
+                    title: '수'
+                },
+                width: 500,
+                height: 400
+            };
+
+            Plotly.newPlot('graph', graph_data, layout);
+        }
+
+        // 명예의 전당 데이터를 렌더링하는 함수
+        function renderHallOfFrame(data) {
+            var html = "<ol>";
+            $.each(data, function(key, value) {
+                html += "<li>" + key + " 차트 " + value + "번 등장" + "</li>";
+            });
+            html += "</ol>";
+
+            $("#hall_of_frame").html(html);
+        }
+        
+        // 모달 열기 버튼 이벤트 핸들러
+        $('#open_detail_page').click(function (){
+            $('#first_modal').css({
+                display : 'flex'
+            });
+
+            // 그래프 데이터 가져오기
+            fetchData("http://localhost:8000/spring_modal", createGraph, function(error) {
+                console.log("Error:", error);
+            });
+
+            // 명예의 전당 데이터 가져오기
+            fetchData("http://localhost:8000/spring_hall_of_frame", renderHallOfFrame, function(error) {
+                console.log("Error:", error);
+            });
+        });
+
+        // 모달 닫기 버튼 이벤트 핸들러
+        $('#return_main_page').click(function (){
+            $('#first_modal').css({
+                display : 'none'
+            });
+        });
+    </script>
+</div>

@@ -9,7 +9,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main.views.index, name='index'),
     path('winter/', main.views.winter, name='winter'),
-    path('modal/', main.views.modal),
+    path('spring_modal/', main.views.spring_modal),
+    path('winter_modal/', main.views.winter_modal),
+    path('spring_hall_of_frame/', main.views.spring_hall_of_frame),
+    path('winter_hall_of_frame/', main.views.winter_hall_of_frame),
 
     path('twenty/', main.views.twenty, name='twenty'),
     path('twentyone/', main.views.twentyone, name='twentyone'),
