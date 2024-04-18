@@ -14,7 +14,9 @@ urlpatterns = [
     path('spring_hall_of_frame/', main.views.spring_hall_of_frame),
     path('winter_hall_of_frame/', main.views.winter_hall_of_frame),
     path('1/', main.views.base, name='index'),
-    path('1/2/', main.views.exam, name='index'),
+    path('1/2/', main.views.exam, name='exam'),
+    path('1/3/', main.views.exam2, name='exam2'),
+    
     
     
 

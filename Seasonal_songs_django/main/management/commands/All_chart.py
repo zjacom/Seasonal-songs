@@ -24,6 +24,7 @@ class Command(BaseCommand):
                     month = row['month'], 
                     day = row['day'], 
                     week = row['week'],
+                    season = row['season'],
                 )
         self.stdout.write(self.style.SUCCESS('Data successfully loaded into the database'))
 

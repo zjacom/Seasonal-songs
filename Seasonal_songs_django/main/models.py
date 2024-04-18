@@ -29,7 +29,8 @@ class All_chart(models.Model):
     date = models.DateField()
     month = models.IntegerField() 
     day = models.IntegerField() 
-    week = models.IntegerField() 
+    week = models.IntegerField()
+    season = models.IntegerField() 
 		
 
 class Combine_season_chart(models.Model):

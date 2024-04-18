@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from collections import defaultdict, OrderedDict
 from django.http import JsonResponse
+from .graph import *
 
 # Create your views here.
 def index(request) :
@@ -29,6 +30,7 @@ def spring_modal(request):
         for year in years_list:
             dic[year.strip()] += 1
     return JsonResponse(dic, safe=False)
+
 
 # 겨울에 차트인 한 노래 개수를 딕셔너리 형태로 전송
 def winter_modal(request):
@@ -76,30 +78,59 @@ def winter_hall_of_frame(request):
     top_3_items = dict(list(sorted_dict.items())[:3])
     return JsonResponse(top_3_items, safe=False)
 
+def exam2(request):
+    graph_html = chart_view(2012, 0)   
+    return render(request, 'exam2.html',{'graph_html': graph_html})
+
 def twelve(request):
-    return render(request, 'main/spring/year_2012.html')
+    graph_html = chart_view(2012, 0)
+    return render(request, 'main/spring/year_2012.html',{'graph_html': graph_html})
+
 def thirteen(request):
-    return render(request, 'main/spring/year_2013.html')
+    graph_html = chart_view(2013, 0)    
+    return render(request, 'main/spring/year_2013.html' ,{'graph_html': graph_html})
+
 def fourteen(request):
-    return render(request, 'main/spring/year_2014.html')
+    graph_html = chart_view(2014, 0)    
+    return render(request, 'main/spring/year_2014.html',{'graph_html': graph_html})
+
 def fifteen(request):
-    return render(request, 'main/spring/year_2015.html')
+    graph_html = chart_view(2015, 0)    
+    
+    return render(request, 'main/spring/year_2015.html',{'graph_html': graph_html})
+
 def sixteen(request):
-    return render(request, 'main/spring/year_2016.html')
+    graph_html = chart_view(2016, 0)    
+    return render(request, 'main/spring/year_2016.html',{'graph_html': graph_html})
+
 def seventeen(request):
-    return render(request, 'main/spring/year_2017.html')
+    graph_html = chart_view(2017, 0)    
+    return render(request, 'main/spring/year_2017.html',{'graph_html': graph_html})
+
 def eighteen(request):
-    return render(request, 'main/spring/year_2018.html')
+    graph_html = chart_view(2018, 0)    
+    return render(request, 'main/spring/year_2018.html',{'graph_html': graph_html})
+
 def nineteen(request):
-    return render(request, 'main/spring/year_2019.html')
+    graph_html = chart_view(2019, 0)    
+    return render(request, 'main/spring/year_2019.html',{'graph_html': graph_html})
+
 def twenty(request) :
-    return render(request, 'main/spring/year_2020.html')
+    graph_html = chart_view(2020, 0)    
+    return render(request, 'main/spring/year_2020.html',{'graph_html': graph_html})
+
 def twentyone(request) :
-    return render(request, 'main/spring/year_2021.html')
+    graph_html = chart_view(2021, 0)    
+    return render(request, 'main/spring/year_2021.html',{'graph_html': graph_html})
+
 def twentytwo(request) :
-    return render(request, 'main/spring/year_2022.html')
+    graph_html = chart_view(2022, 0)    
+    return render(request, 'main/spring/year_2022.html',{'graph_html': graph_html})
+
 def twentythree(request) :
-    return render(request, 'main/spring/year_2023.html')
+    graph_html = chart_view(2023, 0)    
+    return render(request, 'main/spring/year_2023.html',{'graph_html': graph_html})
+
 
 
 def twelve_w(request):

@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/sakura.css' %}">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    
+
 </head>
 <body>
     {% block header %}{% include 'header_s.html' %}{% endblock header %}
@@ -31,7 +34,7 @@
 
         <br>
         <div class="box">
-            <p>{% block spring_graph %} {% endblock spring_graph %}</p>
+            <div id="plotly-graph-container"></div>
         </div>
 
         <br>
@@ -66,6 +69,22 @@
             // Sakura 클래스를 사용하여 벚꽃 효과 초기화
             new Sakura('#sakura-container');
         };
+    </script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // DOM이 완전히 로드된 후에 자바스크립트를 실행하도록 보장합니다
+        document.addEventListener('DOMContentLoaded', function(){
+            {% block spring_graph %}{{ graph_html|safe }} {% endblock spring_graph %} 
+
+            // 여기에 Plotly 그래프 생성 코드를 넣으세요
+            var data = [/*...*/];
+            var layout = {
+                autosize: true, // 이것은 부모 컨테이너에 기반해 크기를 조정하도록 할 것입니다
+                // 다른 레이아웃 속성들을 설정하세요
+            };
+            Plotly.newPlot('plotly-graph-container', data, layout);
+        });
     </script>
 </body>
 </html>
