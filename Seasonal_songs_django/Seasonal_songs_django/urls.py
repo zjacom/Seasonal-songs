@@ -13,6 +13,10 @@ urlpatterns = [
     path('winter_modal/', main.views.winter_modal),
     path('spring_hall_of_frame/', main.views.spring_hall_of_frame),
     path('winter_hall_of_frame/', main.views.winter_hall_of_frame),
+    path('1/', main.views.base, name='index'),
+    path('1/2/', main.views.exam, name='index'),
+    
+    
 
     path('twelve/', main.views.twelve, name='twelve'),
     path('thirteen/', main.views.thirteen, name='thirteen'),

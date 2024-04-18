@@ -1,6 +1,6 @@
 import csv
 from django.core.management.base import BaseCommand
-from main.models import Spring_Modal_chart
+from main.models import *
 from django.conf import settings
 
 
@@ -11,16 +11,22 @@ class Command(BaseCommand):
         parser.add_argument('csv_file', type=str)
 
     def handle(self, *args, **options):
-        datafile = settings.BASE_DIR /'filtered_melon_chart.csv' #filtered_melon_chart.csv 부분만 수정        
-        with open(datafile, newline='', encoding='utf-8-sig') as csvfile:
+        datafile = settings.BASE_DIR /'all_song_filter.csv' #filtered_melon_chart.csv 부분만 수정        
+        with open(options['csv_file'], newline='', encoding='utf-8-sig') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                Spring_Modal_chart.objects.create(
+                All_chart.objects.create(
+                    rank  =row['rank'],                                         
                     title=row['title'],
                     singer=row['singer'],
-                    years=row['years'],
+                    year =row['year'],
+                    date = row['date'],
+                    month = row['month'], 
+                    day = row['day'], 
+                    week = row['week'],
                 )
         self.stdout.write(self.style.SUCCESS('Data successfully loaded into the database'))
+
 '''rank = models.IntegerField()    
     title = models.CharField(max_length=100, default='')
     singer = models.CharField(max_length=100, default='')

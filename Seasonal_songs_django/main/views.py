@@ -10,6 +10,12 @@ def index(request) :
 def winter(request) :
     return render(request, 'main/winter.html')
 
+def base(request) : 
+    return render(request, 'base.html')
+
+def exam(request) : 
+    return render(request, 'exam.html')
+
 # 봄에 차트인 한 노래 개수를 딕셔너리 형태로 전송
 def spring_modal(request):
     dic = defaultdict(int)
@@ -71,29 +77,29 @@ def winter_hall_of_frame(request):
     return JsonResponse(top_3_items, safe=False)
 
 def twelve(request):
-    return render(request, 'main/spring/twelve.html')
+    return render(request, 'main/spring/year_2012.html')
 def thirteen(request):
-    return render(request, 'main/spring/thirteen.html')
+    return render(request, 'main/spring/year_2013.html')
 def fourteen(request):
-    return render(request, 'main/spring/fourteen.html')
+    return render(request, 'main/spring/year_2014.html')
 def fifteen(request):
-    return render(request, 'main/spring/fifteen.html')
+    return render(request, 'main/spring/year_2015.html')
 def sixteen(request):
-    return render(request, 'main/spring/sixteen.html')
+    return render(request, 'main/spring/year_2016.html')
 def seventeen(request):
-    return render(request, 'main/spring/seventeen.html')
+    return render(request, 'main/spring/year_2017.html')
 def eighteen(request):
-    return render(request, 'main/spring/eighteen.html')
+    return render(request, 'main/spring/year_2018.html')
 def nineteen(request):
-    return render(request, 'main/spring/nineteen.html')
+    return render(request, 'main/spring/year_2019.html')
 def twenty(request) :
-    return render(request, 'main/spring/twenty.html')
+    return render(request, 'main/spring/year_2020.html')
 def twentyone(request) :
-    return render(request, 'main/spring/twentyone.html')
+    return render(request, 'main/spring/year_2021.html')
 def twentytwo(request) :
-    return render(request, 'main/spring/twentytwo.html')
+    return render(request, 'main/spring/year_2022.html')
 def twentythree(request) :
-    return render(request, 'main/spring/twentythree.html')
+    return render(request, 'main/spring/year_2023.html')
 
 
 def twelve_w(request):
