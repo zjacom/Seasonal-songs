@@ -99,7 +99,6 @@ a {
     top: 0;
     display: none;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
 }
 
@@ -108,23 +107,17 @@ a {
     backdrop-filter: blur(13.5px);
     -webkit-backdrop-filter: blur(13.5px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgb(103, 103, 103);
     width: 600px;
     height: 900px;
     position: relative;
     padding: 10px;
     z-index: 1;
+    margin-top: 30px;
 }
 
 .main_image {
     position: relative;
-}
-.main_image_text {
-    position: absolute;
-    top: 75%;
-    left: 30%;
-    transform: translate( -50%, -50% );
-    color: rgb(33, 37, 84);
 }
 
 table {
