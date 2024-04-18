@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main.views.index, name='index'),
     path('winter/', main.views.winter, name='winter'),
+    path('modal/', main.views.modal),
 
     path('twenty/', main.views.twenty, name='twenty'),
     path('twentyone/', main.views.twentyone, name='twentyone'),

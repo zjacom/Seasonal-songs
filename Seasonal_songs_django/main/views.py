@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from .models import Modal_chart
+from collections import defaultdict
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request) :
@@ -6,6 +9,10 @@ def index(request) :
 
 def winter(request) :
     return render(request, 'main/winter.html')
+
+def modal(request):
+    data = Modal_chart.objects.all().values('title', 'year', 'chartin_counts')
+    return JsonResponse(list(data), safe=False)
 
 
 

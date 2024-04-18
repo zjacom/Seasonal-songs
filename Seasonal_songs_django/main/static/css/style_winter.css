@@ -116,6 +116,17 @@ a {
     z-index: 1;
 }
 
+.main_image {
+    position: relative;
+}
+.main_image_text {
+    position: absolute;
+    top: 75%;
+    left: 30%;
+    transform: translate( -50%, -50% );
+    color: rgb(33, 37, 84);
+}
+
 table {
     font-size: .9em;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);

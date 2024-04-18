@@ -46,7 +46,15 @@
             </tbody>
         </table>
         
-        <table style="margin-left:auto;margin-right:auto;"> 
+        <div class="main_image">
+            <img src="{% static '/images/sakura.png' %}" width="700px" height="500px">
+            <h1 class="main_image_text" style="font-size:30px">
+                온도 : 20℃<br />
+                D-DAY : D-7<br />
+                벚꽃 개화 날짜 : 4월 3일
+            </h1>
+        </div>
+        <!-- <table style="margin-left:auto;margin-right:auto;"> 
             <thead>
                 <th>벚꽃 개화 날짜</th><th>기온</th><th>D-DAY</th>
             </thead>
@@ -55,7 +63,7 @@
                     <td>4월3일</td><td>14℃</td><td>D-7</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
         {% include 'footer.html' %}
 
