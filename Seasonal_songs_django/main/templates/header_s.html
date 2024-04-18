@@ -32,9 +32,14 @@
                 <!-- 모달 바디 -->
                 <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
                     <div id="graph"></div>
-                    <div>
+                    <div style="border: 1.5px solid rgb(103, 103, 103); 
+                    border-radius: 10px; 
+                    width: 500px; 
+                    height: 170px; 
+                    margin-bottom: 20px;
+                    background-color: white;">
                         <h3>명예의 전당</h3>
-                        <div id="hall_of_frame"></div>
+                        <div style="text-align: left;" id="hall_of_frame"></div>
                     </div>
                     <div>
                         <h3>노래 선정 이유</h3>
@@ -87,12 +92,27 @@
 
         // 명예의 전당 데이터를 렌더링하는 함수
         function renderHallOfFrame(data) {
-            var html = "<ol>";
-            $.each(data, function(key, value) {
-                html += "<li>" + key + " 차트 " + value + "번 등장" + "</li>";
-            });
-            html += "</ol>";
+            var keys = Object.keys(data);
 
+            // 첫 번째 데이터
+            var key1 = keys[0];
+            var value1 = data[key1];
+            var html1 = "<div><img src='/static/images/gold.png' alt='chart icon' width='30' height='30'> " + key1 + " (" + value1 + "번 등장)</div>";
+
+            // 두 번째 데이터
+            var key2 = keys[1];
+            var value2 = data[key2];
+            var html2 = "<div><img src='/static/images/silver.png' alt='chart icon' width='30' height='30'> " + key2 + " (" + value2 + "번 등장)</div>";
+
+            // 세 번째 데이터
+            var key3 = keys[2];
+            var value3 = data[key3];
+            var html3 = "<div><img src='/static/images/bronze.png' alt='chart icon' width='30' height='30'> " + key3 + " (" + value3 + "번 등장)</div>";
+
+            // 최종 HTML
+            var html = html1 + html2 + html3;
+
+            // HTML 삽입
             $("#hall_of_frame").html(html);
         }
         

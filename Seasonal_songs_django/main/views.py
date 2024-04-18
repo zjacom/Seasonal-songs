@@ -70,8 +70,22 @@ def winter_hall_of_frame(request):
     top_3_items = dict(list(sorted_dict.items())[:3])
     return JsonResponse(top_3_items, safe=False)
 
-
-
+def twelve(request):
+    return render(request, 'main/spring/twelve.html')
+def thirteen(request):
+    return render(request, 'main/spring/thirteen.html')
+def fourteen(request):
+    return render(request, 'main/spring/fourteen.html')
+def fifteen(request):
+    return render(request, 'main/spring/fifteen.html')
+def sixteen(request):
+    return render(request, 'main/spring/sixteen.html')
+def seventeen(request):
+    return render(request, 'main/spring/seventeen.html')
+def eighteen(request):
+    return render(request, 'main/spring/eighteen.html')
+def nineteen(request):
+    return render(request, 'main/spring/nineteen.html')
 def twenty(request) :
     return render(request, 'main/spring/twenty.html')
 def twentyone(request) :
@@ -82,9 +96,27 @@ def twentythree(request) :
     return render(request, 'main/spring/twentythree.html')
 
 
+def twelve_w(request):
+    return render(request, 'main/winter/twelve_w.html')
+def thirteen_w(request):
+    return render(request, 'main/winter/thirteen_w.html')
+def fourteen_w(request):
+    return render(request, 'main/winter/fourteen_w.html')
+def fifteen_w(request):
+    return render(request, 'main/winter/fifteen_w.html')
+def sixteen_w(request):
+    return render(request, 'main/winter/sixteen_w.html')
+def seventeen_w(request):
+    return render(request, 'main/winter/seventeen_w.html')
+def eighteen_w(request):
+    return render(request, 'main/winter/eighteen_w.html')
+def nineteen_w(request):
+    return render(request, 'main/winter/nineteen_w.html')
 def twenty_w(request) :
     return render(request, 'main/winter/twenty_w.html')
 def twentyone_w(request) :
     return render(request, 'main/winter/twentyone_w.html')
 def twentytwo_w(request) :
     return render(request, 'main/winter/twentytwo_w.html')
+def twentythree_w(request) :
+    return render(request, 'main/winter/twentythree_w.html')
