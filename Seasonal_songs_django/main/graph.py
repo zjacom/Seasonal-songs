@@ -79,6 +79,7 @@ def chart_view(year_is, season_is):
         yaxis=dict(autorange="reversed"),
         legend_title="Songs"
     )
+    
 
     # 그래프 HTML과 appearances 딕셔너리 반환
     graph_html = pio.to_html(fig, full_html=False)
@@ -86,7 +87,7 @@ def chart_view(year_is, season_is):
 
 
 
-def parse_data_for_table(chart, year_):
+def parse_data_for_table(chart, year_): #그 해 노래 리스트 
     dic = defaultdict(list)
     for instance in chart:
         years_str = instance.years.strip("[]")
