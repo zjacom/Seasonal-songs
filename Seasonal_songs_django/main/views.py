@@ -164,7 +164,7 @@ def twentythree(request) :
 
 def twelve_w(request):
     graph_html,appearances =chart_view(2012, 1)
-    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2013")
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2012")
     context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
     return render(request, 'main/winter/winter_child.html',context)
 
