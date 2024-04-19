@@ -17,6 +17,7 @@ a {
     text-decoration-line: none;
 }
 
+
 .parent {
     margin: 1px;
     padding: 10px;
@@ -26,19 +27,16 @@ a {
     display: inline-block;
     border-radius: 10px;
     margin: 15px;
-    border: 1.5px solid rgb(103, 103, 103);
+    border: 1.5px solid rgb(255, 223, 245);
     padding-left: 30px;
     padding-right: 30px;
     background-color: white;
 }
 
 .box {
-    border: 1.5px solid rgb(103, 103, 103);
-    border-radius: 10px;
-    height: 200px;
-    margin-left: 290px;
-    margin-right: 290px;
-    background-color: white;
+    height: 500px;
+    width: 670px;
+    margin: 0 auto;
 }
 
 .modal_box {

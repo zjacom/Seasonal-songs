@@ -33,12 +33,9 @@ a {
 }
 
 .box {
-    border: 1.5px solid rgb(255, 255, 255);
-    border-radius: 10px;
-    height: 200px;
-    margin-left: 290px;
-    margin-right: 290px;
-    color: white;
+
+    height: 500px;
+    width: 710px;
 }
 
 .modal_box {
