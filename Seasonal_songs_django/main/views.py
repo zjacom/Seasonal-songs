@@ -3,6 +3,7 @@ from .models import *
 from collections import defaultdict, OrderedDict
 from django.http import JsonResponse
 from .graph import *
+import json
 
 # Create your views here.
 def index(request) :
@@ -79,12 +80,20 @@ def winter_hall_of_frame(request):
     return JsonResponse(top_3_items, safe=False)
 
 def exam2(request):
-    graph_html = chart_view(2012, 0)   
+    this_year = 2012
+    this_season = 0
+    graph_html = chart_view(this_year, this_season)
+    this_spring_list = All_chart.objects.filter(year=this_year, season=this_season)
+    data_list = list(this_spring_list.values( 'title','singer'))
+    
     return render(request, 'exam2.html',{'graph_html': graph_html})
 
 def twelve(request):
-    graph_html = chart_view(2012, 0)
-    return render(request, 'main/spring/year_2012.html',{'graph_html': graph_html})
+    graph_html =chart_view(2012, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2012")
+    context = { 'graph_html':graph_html, 'dic' : dict(dic)}        
+    
+    return render(request, 'main/spring/year_2012.html',context)
 
 def thirteen(request):
     graph_html = chart_view(2013, 0)    

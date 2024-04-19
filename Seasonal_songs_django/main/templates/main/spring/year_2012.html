@@ -3,12 +3,17 @@
 봄
 {% endblock %}
 
-{% block spring_start %} 3월 4주 {% endblock %}
+{% block spring_start %}123 {% endblock %}
 
 {% block spring_end %} 4월 4주 {% endblock %}
 
 {% block year_song %}
-<td>버스커 버스커</td><td>벚꽃 엔딩</td>
+    {% for title, singer in dic.items %}
+    <tr>
+        <td>{{ title }}</td>
+        <td>{{ singer }}</td>
+    </tr>
+    {% endfor %}]
 {% endblock %}
 
 {% block Temperature %}

@@ -1,8 +1,10 @@
-from django.shortcuts import render
 from .models import All_chart
 import plotly.graph_objects as go
 import plotly.io as pio
 from itertools import groupby
+from django.db.models import Min, Max
+import datetime
+from collections import defaultdict, OrderedDict
 
 def chart_view(year_is, season_is):
     # 데이터베이스에서 주어진 연도와 시즌의 데이터 필터링 및 정렬
@@ -38,3 +40,14 @@ def chart_view(year_is, season_is):
 
     # 그래프를 HTML로 변환하여 반환
     return pio.to_html(fig, full_html=False)
+
+def parse_data_for_table(chart, year_):
+    dic = defaultdict(list)
+    for instance in chart:
+        years_str = instance.years.strip("[]")
+        years_list = years_str.split(",")
+
+        for year in years_list:
+            if year.strip() == year_:
+                dic[instance.title] = instance.singer
+    return dic
