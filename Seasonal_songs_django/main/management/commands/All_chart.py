@@ -2,17 +2,15 @@ import csv
 from django.core.management.base import BaseCommand
 from main.models import *
 from django.conf import settings
+from datetime import datetime
 
 
 class Command(BaseCommand):
     help = 'Import selected fields from a CSV file into the database'
 
-    def add_arguments(self, parser):
-        parser.add_argument('csv_file', type=str)
-
-    def handle(self, *args, **options):
-        datafile = settings.BASE_DIR /'all_song_filter.csv' #filtered_melon_chart.csv 부분만 수정        
-        with open(options['csv_file'], newline='', encoding='utf-8-sig') as csvfile:
+    def handle(self, *args, **options):#chart_in_mt3_all.csv 부분만 수정
+        datafile = settings.BASE_DIR /'chart_in_mt3_all.csv'         
+        with open(datafile, newline='', encoding='utf-8-sig') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 All_chart.objects.create(
@@ -20,7 +18,7 @@ class Command(BaseCommand):
                     title=row['title'],
                     singer=row['singer'],
                     year =row['year'],
-                    date = row['date'],
+                    date = datetime.strptime(row['date'], "%Y.%m.%d").strftime("%Y-%m-%d") , 
                     month = row['month'], 
                     day = row['day'], 
                     week = row['week'],

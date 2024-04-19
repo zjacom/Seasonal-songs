@@ -80,89 +80,156 @@ def winter_hall_of_frame(request):
     return JsonResponse(top_3_items, safe=False)
 
 def exam2(request):
-    this_year = 2012
+    this_year = 2021
     this_season = 0
-    graph_html = chart_view(this_year, this_season)
+    graph_html,appearances = chart_view(this_year, this_season)
     this_spring_list = All_chart.objects.filter(year=this_year, season=this_season)
     data_list = list(this_spring_list.values( 'title','singer'))
-    
-    return render(request, 'exam2.html',{'graph_html': graph_html})
+        
+    return render(request, 'exam2.html',{'graph_html': graph_html, 'appearances': appearances})
 
 def twelve(request):
-    graph_html =chart_view(2012, 0)
+    graph_html,appearances =chart_view(2012, 0)
     dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2012")
-    context = { 'graph_html':graph_html, 'dic' : dict(dic)}        
-    
-    return render(request, 'main/spring/year_2012.html',context)
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def thirteen(request):
-    graph_html = chart_view(2013, 0)    
-    return render(request, 'main/spring/year_2013.html' ,{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2013, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2013")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def fourteen(request):
-    graph_html = chart_view(2014, 0)    
-    return render(request, 'main/spring/year_2014.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2014, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2014")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
-def fifteen(request):
-    graph_html = chart_view(2015, 0)    
-    
-    return render(request, 'main/spring/year_2015.html',{'graph_html': graph_html})
+def fifteen(request):    
+    graph_html,appearances =chart_view(2015, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2015")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def sixteen(request):
-    graph_html = chart_view(2016, 0)    
-    return render(request, 'main/spring/year_2016.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2016, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2016")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def seventeen(request):
-    graph_html = chart_view(2017, 0)    
-    return render(request, 'main/spring/year_2017.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2017, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2017")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def eighteen(request):
-    graph_html = chart_view(2018, 0)    
-    return render(request, 'main/spring/year_2018.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2018, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2018")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def nineteen(request):
-    graph_html = chart_view(2019, 0)    
-    return render(request, 'main/spring/year_2019.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2019, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2019")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def twenty(request) :
-    graph_html = chart_view(2020, 0)    
-    return render(request, 'main/spring/year_2020.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2020, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2020")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def twentyone(request) :
-    graph_html = chart_view(2021, 0)    
-    return render(request, 'main/spring/year_2021.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2021, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2021")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def twentytwo(request) :
-    graph_html = chart_view(2022, 0)    
-    return render(request, 'main/spring/year_2022.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2022, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2022")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def twentythree(request) :
-    graph_html = chart_view(2023, 0)    
-    return render(request, 'main/spring/year_2023.html',{'graph_html': graph_html})
+    graph_html,appearances =chart_view(2023, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2023")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 
 
 def twelve_w(request):
-    return render(request, 'main/winter/twelve_w.html')
+    graph_html,appearances =chart_view(2012, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2013")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def thirteen_w(request):
-    return render(request, 'main/winter/thirteen_w.html')
+    graph_html,appearances =chart_view(2013, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2013")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def fourteen_w(request):
-    return render(request, 'main/winter/fourteen_w.html')
+    graph_html,appearances =chart_view(2014, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2014")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def fifteen_w(request):
-    return render(request, 'main/winter/fifteen_w.html')
+    graph_html,appearances =chart_view(2015, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2015")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def sixteen_w(request):
-    return render(request, 'main/winter/sixteen_w.html')
+    graph_html,appearances =chart_view(2016, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2016")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def seventeen_w(request):
-    return render(request, 'main/winter/seventeen_w.html')
+    graph_html,appearances =chart_view(2017, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2017")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def eighteen_w(request):
-    return render(request, 'main/winter/eighteen_w.html')
+    graph_html,appearances =chart_view(2018, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2018")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def nineteen_w(request):
-    return render(request, 'main/winter/nineteen_w.html')
+    graph_html,appearances =chart_view(2019, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2019")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def twenty_w(request) :
-    return render(request, 'main/winter/twenty_w.html')
+    graph_html,appearances =chart_view(2020, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2020")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def twentyone_w(request) :
-    return render(request, 'main/winter/twentyone_w.html')
+    graph_html,appearances =chart_view(2021, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2021")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def twentytwo_w(request) :
-    return render(request, 'main/winter/twentytwo_w.html')
+    graph_html,appearances =chart_view(2022, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2022")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
+
 def twentythree_w(request) :
-    return render(request, 'main/winter/twentythree_w.html')
+    graph_html,appearances =chart_view(2023, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2023")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)

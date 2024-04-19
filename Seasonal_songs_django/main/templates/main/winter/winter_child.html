@@ -1,0 +1,27 @@
+{% extends 'winter.html' %}
+{% block title %}
+겨울
+{% endblock %}
+
+{% block winter_start %}{{ appearances.overall_first_month }}월 {{ appearances.overall_first_week }}주차{% endblock %}
+
+{% block winter_end %}{{ appearances.overall_last_month }}월 {{ appearances.overall_last_week }}주차 {% endblock %}
+
+{% block year_song %}
+    {% for title, singer in dic.items %}
+    <tr>
+        <td>{{ title }}</td>
+        <td>{{ singer }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block Temperature %}
+20도
+{% endblock %}
+
+{% block D_day %}
+D-32
+{% endblock %}
+
+{% block bloom_day %}3월 28일 {% endblock %}

@@ -7,5 +7,17 @@
 <body>
     <h1>Weekly Top 10 Song Rankings</h1>
     <div>{{ graph_html|safe }}</div>
+
+    {{appearances}}
+    {% for song in appearances %}
+        <p>{{ song.title }}: 시작 - {{ song.overall_first_month }}월 {{ song.overall_first_week }}주</p>
+    {% endfor %}
+    <ul>
+        <li>Overall First Month Appearances: {{ appearances.overall_first_month }}</li>
+        <li>Overall First Week Appearances: {{ appearances.overall_first_week }}</li>
+        <li>Overall Last Month Appearances: {{ appearances.overall_last_month }}</li>
+        <li>Overall Last Week Appearances: {{ appearances.overall_last_week }}</li>
+    </ul>
+    {{  }}                                      
 </body>
 </html>

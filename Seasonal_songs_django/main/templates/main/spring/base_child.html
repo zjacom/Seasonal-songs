@@ -13,7 +13,7 @@
         <td>{{ title }}</td>
         <td>{{ singer }}</td>
     </tr>
-    {% endfor %}]
+    {% endfor %}
 {% endblock %}
 
 {% block Temperature %}
@@ -25,6 +25,3 @@ D-32
 {% endblock %}
 
 {% block bloom_day %}3월 28일 {% endblock %}
-
-{% for title, details in appearances.items %}{{ details.first_month }}/{{ details.first_week }}
-{{ details.last_month }}/{{ details.last_week }}{% endfor %}

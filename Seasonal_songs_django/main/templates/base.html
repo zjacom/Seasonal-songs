@@ -23,7 +23,7 @@
     {% block category %}{% include 'category_s.html' %}{% endblock category %}   
     <br><br>
         <div class="parent" >
-            <div class="child">
+            <div class="child">                
                 <h4>올해 차트 봄의 시작은 ?!</h4>
                 <img src="{% static '/images/spring_start.jpg' %}" width="220px" height="150">
                 <p>{% block spring_start %} {% endblock spring_start %}</p>
@@ -31,29 +31,22 @@
             <div class="child">
                 <h4>올해 차트 봄의 끝은 ?!</h4>
                 <img src="{% static '/images/spring_end.jpg' %}" width="220px" height="150">
-                <p>{% block spring_end %} {% endblock spring_end %}</p>
+                <p>{% block spring_end %}{% endblock spring_end %}</p>
+                
             </div>
         </div>
-<<<<<<< Updated upstream
-
+        
+        
+        
         <br>
         <div class="box">
             
             <div id="plotly-graph-container"> 
-=======
-        <br>
-
-        <div class="box">
-            <div id="plotly-graph-container" > 
->>>>>>> Stashed changes
                 {% block spring_graph %}{{ graph_html|safe }} {% endblock spring_graph %}
             </div>
         </div>
 
-<<<<<<< Updated upstream
         <br>
-=======
->>>>>>> Stashed changes
         <table style="margin-left:auto;margin-right:auto;"> 
             <thead>
                 <th>가수</th>
