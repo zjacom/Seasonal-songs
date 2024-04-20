@@ -33,9 +33,9 @@ a {
 }
 
 .box {
-
     height: 500px;
-    width: 710px;
+    width: 670px;
+    margin: 0 auto;
 }
 
 .modal_box {

@@ -7,10 +7,16 @@ import json
 
 # Create your views here.
 def index(request) :
-    return render(request, 'main/index.html')
+    graph_html,appearances =chart_view(2023, 0)
+    dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2023")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/spring/base_child.html',context)
 
 def winter(request) :
-    return render(request, 'main/winter.html')
+    graph_html,appearances =chart_view(2023, 1)
+    dic = parse_data_for_table(Winter_Modal_chart.objects.all(), "2023")
+    context = { 'graph_html':graph_html,'dic' : dict(dic),'appearances': appearances }
+    return render(request, 'main/winter/winter_child.html',context)
 
 def base(request) : 
     return render(request, 'base.html')
@@ -37,7 +43,7 @@ def spring_modal(request):
 def winter_modal(request):
     dic = defaultdict(int)
 
-    modal_chart = Winter_Modal_chart.objects.all()
+    modal_chart = Winter_Modal_chart.objects.all()  
 
     for instance in modal_chart:
         years_str = instance.years.strip("[]")

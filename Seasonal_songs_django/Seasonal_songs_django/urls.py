@@ -7,7 +7,7 @@ import main.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main.views.index, name='index'),
+    path('', main.views.twentythree, name='base'),
     path('winter/', main.views.winter, name='winter'),
     path('spring_modal/', main.views.spring_modal),
     path('winter_modal/', main.views.winter_modal),

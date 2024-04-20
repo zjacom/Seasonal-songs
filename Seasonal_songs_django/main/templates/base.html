@@ -58,9 +58,9 @@
         <div class="main_image">
             <img src="{% static '/images/sakura.png' %}" width="500px" height="300px">
             <h3 class="main_image_text">
+                벚꽃 개화 날짜 : {% block bloom_day %}{% endblock bloom_day %}<br />
                 온도 : {% block Temperature %}{% endblock Temperature %}<br />
-                D-DAY : {% block D_day %}{% endblock D_day %}<br />
-                벚꽃 개화 날짜 : {% block bloom_day %}{% endblock bloom_day %}
+                D-DAY : {% block D_day %}{% endblock D_day %}
             </h3>
         </div>
     
@@ -79,7 +79,7 @@
     
     
         
-        
+    
     
 </body>
 </html>

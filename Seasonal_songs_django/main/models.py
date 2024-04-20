@@ -32,11 +32,19 @@ class All_chart(models.Model):
     week = models.IntegerField()
     season = models.IntegerField() 
 		
-
-class Combine_season_chart(models.Model):
+    
+class Yearly_weather(models.Model):
     class Meta:
-        db_table = 'Combine_season_chart'
+        db_table = 'Yearly_weather'
         
-    title = models.CharField(max_length=100, default='')    
-    singer = models.CharField(max_length=100, default='')
-    years = models.CharField(max_length=100, default='')
+    year = models.IntegerField()  
+    first_bloom = models.DateField()
+    first_snow = models.DateField()
+    
+class Monthly_temp(models.Model):
+    class Meta:
+        db_table = 'Monthly_temp'        
+    
+    year = models.IntegerField()
+    month = models.IntegerField()
+    temp = models.FloatField()

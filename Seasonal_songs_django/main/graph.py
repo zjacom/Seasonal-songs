@@ -1,4 +1,4 @@
-from .models import All_chart
+from .models import *
 import plotly.graph_objects as go
 import plotly.io as pio
 from itertools import groupby
@@ -8,45 +8,62 @@ from collections import defaultdict, OrderedDict
 import pandas as pd
 # 날짜 형식 변환 함수
 def format_date(date):
-    if isinstance(date, str):
-        # 문자열 날짜를 datetime 객체로 변환
-        date_obj = datetime.datetime.strptime(date, '%b %d, %Y')
-    elif isinstance(date, datetime.date):
-        # 이미 datetime.date 객체인 경우 직접 사용
-        date_obj = date
-    else:
-        raise TypeError("Unsupported date type")
-    # 원하는 형식으로 문자열로 다시 변환
-    return date_obj.strftime('%m월 %d일')
+    # 'date'는 datetime 객체이어야 합니다.
+    return date.strftime('%#m월 %#d일')
 
 def chart_view(year_is, season_is):
     # 데이터베이스에서 주어진 연도와 시즌의 데이터 필터링 및 정렬
     data = All_chart.objects.filter(year=year_is, season=season_is).order_by('date','title' )
     query = data.values()
     data_list = list(query)
+    starting_day = query.first()['date']
     starting_month = query.first()['month']
     starting_week = query.first()['week']
     ending_month = query.last()['month']    
-    ending_week = query.last()['week']    
+    ending_week = query.last()['week']
+    #온도 구하기
+    temperature =  Monthly_temp.objects.filter(year=year_is, month=starting_month).values('temp')
+    temperature =temperature[0]['temp']
+    #개화,첫눈 날짜 가져오기
+    weather_staus  = Yearly_weather.objects.filter(year=year_is).values('first_bloom', 'first_snow')
+    if  season_is == 0:
+        differentday =  starting_day - weather_staus[0]['first_bloom']
+        differentday = differentday.days
+        weather_staus = weather_staus[0]['first_bloom'].strftime('%#m월 %#d일')
+        
+    else:
+        differentday =  starting_day - weather_staus[0]['first_snow']
+        differentday = differentday.days
+        weather_staus = weather_staus[0]['first_snow'].strftime('%#m월 %#d일')
+        
+    #D-day날짜 구하기
     
     season_name= {0:'봄',1:'겨울'}    
     season_info = {
         'overall_first_month': starting_month,
         'overall_first_week': starting_week,
         'overall_last_month': ending_month,
-        'overall_last_week': ending_week
+        'overall_last_week': ending_week,
+        'temperature': temperature,
+        'weather_staus': weather_staus,
+        'differentday' : differentday
         }
     appearances = season_info
     
     # 데이터를 리스트로 변환하고 'title'로 그룹화
-    data_list = list(data.values('date', 'rank', 'title'))
-    grouped = groupby(sorted(data_list, key=lambda x: x['title']), key=lambda x: x['title'])
+    data_list = list(data.values('date', 'rank', 'title','singer'))
+    grouped = groupby(sorted(data_list, key=lambda x: (x['title'], x['singer'])), 
+                      key=lambda x: (x['title'], x['singer']))
+    
+    all_dates = sorted({g['date'] for g in data_list})
+    tick_vals = [date.strftime('%Y-%m-%d') for date in all_dates]
+    tick_texts = [date.strftime('%m월 %d일') for date in all_dates]    
+    
     
     # 새로운 그래프 객체 생성
     fig = go.Figure()
-    for title, group in grouped:
+    for (title,singer), group in grouped:
         group_list = list(group)
-        formatted_dates = [format_date(g['date']) for g in group_list]
         fig.add_trace(go.Scatter(
             x=[g['date'] for g in group_list],
             y=[g['rank'] for g in group_list],
@@ -56,9 +73,15 @@ def chart_view(year_is, season_is):
             line_shape='linear'
             )            
         )
+    
         
     fig.update_xaxes(title_text="날짜",
-            title_font=dict(family="Arial, sans-serif", size=18, color="RebeccaPurple"))
+            title_font=dict(family="Arial, sans-serif", size=18, color="RebeccaPurple"),
+            tickvals=tick_vals,  # 날짜 데이터를 기준으로 틱을 설정
+            ticktext=tick_texts,  # 날짜 형식을 '월 일'로 설정
+            tickangle=-45,  # 라벨의 기울기를 -45도로 설정
+            autorange=True
+            )
     fig.update_yaxes(title_text="순위",
             title_font=dict(family="Arial, sans-serif", size=18, color="RebeccaPurple"))
 

@@ -17,11 +17,11 @@
 {% endblock %}
 
 {% block Temperature %}
-20도
+{{appearances.temperature}}°C
 {% endblock %}
 
 {% block D_day %}
-D-32
+{{appearances.differentday}}일
 {% endblock %}
 
-{% block bloom_day %}3월 28일 {% endblock %}
+{% block snow_day %}{{appearances.weather_staus}}  {% endblock %}
