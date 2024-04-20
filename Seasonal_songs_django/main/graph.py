@@ -6,55 +6,37 @@ from django.db.models import Min, Max
 import datetime
 from collections import defaultdict, OrderedDict
 import pandas as pd
-
+# 날짜 형식 변환 함수
+def format_date(date):
+    if isinstance(date, str):
+        # 문자열 날짜를 datetime 객체로 변환
+        date_obj = datetime.datetime.strptime(date, '%b %d, %Y')
+    elif isinstance(date, datetime.date):
+        # 이미 datetime.date 객체인 경우 직접 사용
+        date_obj = date
+    else:
+        raise TypeError("Unsupported date type")
+    # 원하는 형식으로 문자열로 다시 변환
+    return date_obj.strftime('%m월 %d일')
 
 def chart_view(year_is, season_is):
     # 데이터베이스에서 주어진 연도와 시즌의 데이터 필터링 및 정렬
-    data = All_chart.objects.filter(year=year_is, season=season_is).order_by('title', 'date')
+    data = All_chart.objects.filter(year=year_is, season=season_is).order_by('date','title' )
     query = data.values()
     data_list = list(query)
+    starting_month = query.first()['month']
+    starting_week = query.first()['week']
+    ending_month = query.last()['month']    
+    ending_week = query.last()['week']    
     
-    season_name= {0:'봄',1:'겨울'}
-    # Pandas DataFrame 생성
-    df = pd.DataFrame(data_list)
-    data_date = data.values('title').annotate(
-            first_date=Min('date'),
-            last_date=Max('date')
-        )
-        
-        # 최초 및 최종 등장 날짜의 month와 week 값을 찾기 위해 추가 쿼리 실행
-    appearances = []
-    for item in data_date:
-        first = All_chart.objects.filter(title=item['title'], date=item['first_date']).first()
-        last = All_chart.objects.filter(title=item['title'], date=item['last_date']).first()
-        
-        appearance = {
-                'title': item['title'],
-                'first_month': first.month if first else None,
-                'first_week': first.week if first else None,
-                'last_month': last.month if last else None,
-                'last_week': last.week if last else None
-            }
-        appearances.append(appearance)
-        
-    
-    df2 = pd.DataFrame(appearances)
-    
-    # 전체 최소 및 최대 월/주 계산
-    overall_first_month = df2['first_month'].min()
-    overall_first_week = df2.loc[df2['first_month'] == overall_first_month, 'first_week'].min()
-    overall_last_month = df2['last_month'].max()
-    overall_last_week = df2.loc[df2['last_month'] == overall_last_month, 'last_week'].max()
-
-    # 계산 결과를 사전으로 저장
+    season_name= {0:'봄',1:'겨울'}    
     season_info = {
-        'overall_first_month': overall_first_month,
-        'overall_first_week': overall_first_week,
-        'overall_last_month': overall_last_month,
-        'overall_last_week': overall_last_week
+        'overall_first_month': starting_month,
+        'overall_first_week': starting_week,
+        'overall_last_month': ending_month,
+        'overall_last_week': ending_week
         }
-    appearances = season_info 
-
+    appearances = season_info
     
     # 데이터를 리스트로 변환하고 'title'로 그룹화
     data_list = list(data.values('date', 'rank', 'title'))
@@ -64,12 +46,21 @@ def chart_view(year_is, season_is):
     fig = go.Figure()
     for title, group in grouped:
         group_list = list(group)
+        formatted_dates = [format_date(g['date']) for g in group_list]
         fig.add_trace(go.Scatter(
             x=[g['date'] for g in group_list],
             y=[g['rank'] for g in group_list],
             mode='lines+markers',
-            name=title
-        ))
+            name=title,
+            hovertemplate=' %{x} <br>'+ '순위 : %{y}위',
+            line_shape='linear'
+            )            
+        )
+        
+    fig.update_xaxes(title_text="날짜",
+            title_font=dict(family="Arial, sans-serif", size=18, color="RebeccaPurple"))
+    fig.update_yaxes(title_text="순위",
+            title_font=dict(family="Arial, sans-serif", size=18, color="RebeccaPurple"))
 
     # 그래프 레이아웃 설정
     fig.update_layout(
@@ -77,7 +68,10 @@ def chart_view(year_is, season_is):
         xaxis_title='날짜',
         yaxis_title='순위',
         yaxis=dict(autorange="reversed"),
-        legend_title="Songs"
+        legend_title="노래",
+        template="simple_white"
+        
+        
     )
     
 
