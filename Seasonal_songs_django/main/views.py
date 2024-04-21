@@ -6,6 +6,18 @@ from .graph import *
 import json
 
 # Create your views here.
+def parse_data_for_table(chart, year_):
+    dic = defaultdict(list)
+    for instance in chart:
+        years_str = instance.years.strip("[]")
+        years_list = years_str.split(",")
+
+        for year in years_list:
+            if year.strip() == year_:
+                dic[instance.title] = instance.singer
+    return dic
+
+
 def index(request) :
     graph_html,appearances =chart_view(2023, 0)
     dic = parse_data_for_table(Spring_Modal_chart.objects.all(), "2023")
@@ -38,18 +50,19 @@ def spring_modal(request):
             dic[year.strip()] += 1
     return JsonResponse(dic, safe=False)
 
-
 # 겨울에 차트인 한 노래 개수를 딕셔너리 형태로 전송
 def winter_modal(request):
     dic = defaultdict(int)
 
-    modal_chart = Winter_Modal_chart.objects.all()  
+    modal_chart = Winter_Modal_chart.objects.all()
 
     for instance in modal_chart:
         years_str = instance.years.strip("[]")
         years_list = years_str.split(",")
 
         for year in years_list:
+            if year.strip() == "2010" or year.strip() == "2011":
+                continue
             dic[year.strip()] += 1
     return JsonResponse(dic, safe=False)
 
@@ -78,6 +91,12 @@ def winter_hall_of_frame(request):
     for instance in modal_chart:
         years_str = instance.years.strip("[]")
         years_list = years_str.split(",")
+        for i in range(len(years_list)):
+            years_list[i] = years_list[i].strip()
+        while "2010" in years_list:
+            years_list.remove("2010")
+        while "2011" in years_list:
+            years_list.remove("2011")
         dic[instance.title] = len(years_list)
     
     sorted_dict = OrderedDict(sorted(dic.items(), key=lambda x: x[1], reverse=True))
