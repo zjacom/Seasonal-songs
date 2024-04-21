@@ -18,7 +18,7 @@ class Command(BaseCommand):
                     title=row['title'],
                     singer=row['singer'],
                     year =row['year'],
-                    date = datetime.strptime(row['date'], "%Y.%m.%d").strftime("%Y-%m-%d") , 
+                    date = row['date'] , 
                     month = row['month'], 
                     day = row['day'], 
                     week = row['week'],

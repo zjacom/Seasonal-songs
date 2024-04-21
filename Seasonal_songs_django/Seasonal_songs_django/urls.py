@@ -8,7 +8,7 @@ import main.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main.views.twentythree, name='base'),
-    path('winter/', main.views.winter, name='winter'),
+    path('winter/', main.views.twentythree_w, name='winter'),
     path('spring_modal/', main.views.spring_modal),
     path('winter_modal/', main.views.winter_modal),
     path('spring_hall_of_frame/', main.views.spring_hall_of_frame),

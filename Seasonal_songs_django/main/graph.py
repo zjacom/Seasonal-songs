@@ -57,7 +57,7 @@ def chart_view(year_is, season_is):
     
     all_dates = sorted({g['date'] for g in data_list})
     tick_vals = [date.strftime('%Y-%m-%d') for date in all_dates]
-    tick_texts = [date.strftime('%m월 %d일') for date in all_dates]    
+    tick_texts = [date.strftime('%#m월 %#d일') for date in all_dates]    
     
     
     # 새로운 그래프 객체 생성
