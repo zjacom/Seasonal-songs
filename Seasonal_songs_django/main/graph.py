@@ -9,7 +9,7 @@ import pandas as pd
 # 날짜 형식 변환 함수
 def format_date(date):
     # 'date'는 datetime 객체이어야 합니다.
-    return date.strftime('%#m월 %#d일')
+    return date.strftime('%m월 %e일')
 
 def chart_view(year_is, season_is):
     # 데이터베이스에서 주어진 연도와 시즌의 데이터 필터링 및 정렬
@@ -29,12 +29,12 @@ def chart_view(year_is, season_is):
     if  season_is == 0:
         differentday =  starting_day - weather_staus[0]['first_bloom']
         differentday = differentday.days
-        weather_staus = weather_staus[0]['first_bloom'].strftime('%#m월 %#d일')
+        weather_staus = weather_staus[0]['first_bloom'].strftime('%m월 %e일')
         
     else:
         differentday =  starting_day - weather_staus[0]['first_snow']
         differentday = differentday.days
-        weather_staus = weather_staus[0]['first_snow'].strftime('%#m월 %#d일')
+        weather_staus = weather_staus[0]['first_snow'].strftime('%m월 %e일')
         
     #D-day날짜 구하기
     
