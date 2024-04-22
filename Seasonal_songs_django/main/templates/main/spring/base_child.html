@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+봄
+{% endblock %}
+
+{% block spring_start %}{{ appearances.overall_first_month }}월 {{ appearances.overall_first_week }}주차{% endblock %}
+
+{% block spring_end %}{{ appearances.overall_last_month }}월 {{ appearances.overall_last_week }}주차 {% endblock %}
+
+{% block year_song %}
+    {% for title, singer in dic.items %}
+    <tr>
+        <td>{{ title }}</td>
+        <td>{{ singer }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+{% block Temperature %}{{appearances.temperature}}°C  {% endblock %}
+
+{% block D_day %}
+{{appearances.differentday}}일
+{% endblock %}
+
+{% block bloom_day %}{{appearances.weather_staus}} {% endblock %}

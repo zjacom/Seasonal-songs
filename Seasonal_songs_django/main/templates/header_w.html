@@ -1,0 +1,184 @@
+<!--header.html-->
+{% load static %}
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<style>
+    .container {
+        display: flex; /* Flexbox를 사용하여 요소들을 가로로 배열합니다. */
+        align-items: center; /* 수직 정렬을 가운데로 설정합니다. */
+    }
+
+    .container img {
+        margin-right: 10px; /* 이미지와 텍스트 사이의 간격을 설정합니다. */
+    }
+</style>
+
+<div style="text-align: center;">
+    <img style="cursor: pointer;" id="open_detail_page" 
+            src="{% static '/images/modal_icon.png' %}" width="50" height="50">
+    
+    <br>
+    <a href="{% url 'index' %}" class="btn pink rounded">S P R I N G</a>
+    <a href="{% url 'winter' %}" class="btn sky rounded">W I N T E R</a>
+    <!-- 모달 -->
+    <div id="first_modal" class="modal_overlay">
+        <div class="modal_window">
+            <div>
+                <!-- 모달 상단 구현하기 -->
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                    <div style="width: 40px;">
+                        
+                    </div>
+                    <div class="stroke">
+                        <h2>세부 사항</h2> 
+                    </div>    
+                    <div>
+                        <img style="cursor: pointer; width: 40px; height: 40px;" id="return_main_page" 
+                            src="{% static '/images/close_icon.png' %}">
+                    </div>
+                </div>
+
+                <!-- 구분선 -->
+                <hr>
+                
+                <!-- 모달 바디 -->
+                <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div id="graph"></div>
+                    <div style="border: 1.5px solid rgb(103, 103, 103); 
+                    border-radius: 10px; 
+                    width: 500px; 
+                    height: 170px; 
+                    margin-bottom: 20px;
+                    background-color: white;">
+                        <h3>명예의 전당</h3>
+                        <div style="text-align: left;" id="hall_of_frame"></div>
+                    </div>
+                    <div style="border: 1.5px solid rgb(103, 103, 103); 
+                    border-radius: 10px; 
+                    width: 500px; 
+                    height: 170px; 
+                    margin-bottom: 40px;
+                    background-color: white;">
+                        <h3>노래 선정 이유</h3>
+                        <br>
+                        <p>12월 ~ 2월 사이에 멜론 차트 100위 안에 든 횟수가 3번 이상인 노래를 선정했습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // AJAX 호출을 처리하는 함수
+        function fetchData(url, successCallback, errorCallback) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: successCallback,
+                error: errorCallback
+            });
+        }
+
+        // 그래프를 생성하는 함수
+        function createGraph(data) {
+            var xValues = [];
+            var yValues = [];
+
+            for (var key in data) {
+                xValues.push(key);
+                yValues.push(data[key]);
+            }
+
+            var graph_data = [{
+                x: xValues,
+                y: yValues,
+                type: 'bar',
+                marker: {
+                colorscale: 'Viridis', // 사용할 컬러맵 지정
+                color: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],   // 각 데이터 포인트에 해당하는 값 지정
+            },
+            hovertemplate: '%{x}년 <br>노래 수: %{y}<extra></extra>'
+            }];
+
+            var layout = {
+                title: {
+                        text: '연도별 차트인 한 겨울 노래 개수',
+                        font: {
+                            family: 'GangwonEdu_OTFBoldA',
+                            size: 28,
+                            color: 'black'
+                        }
+                    },
+                xaxis: {
+                    tickmode: 'linear',
+                    dtick: 1,
+                    // tickangle: -45
+                    
+                },
+                yaxis: {
+                    title: {
+                        text: '노래 수',
+                        font: {
+                            family: 'GangwonEdu_OTFBoldA', // 폰트 패밀리 설정
+                            size: 18, // 폰트 크기 설정
+                            color: 'black' // 폰트 색상 설정
+                        }
+                    },
+                },
+                width: 600,
+                height: 400,
+            };
+
+            Plotly.newPlot('graph', graph_data, layout);
+        }
+
+        // 명예의 전당 데이터를 렌더링하는 함수
+        function renderHallOfFrame(data) {
+            var keys = Object.keys(data);
+
+            // 첫 번째 데이터
+            var key1 = keys[0];
+            var value1 = data[key1];
+            var html1 = "<div class='container'><img src='/static/images/gold.png' alt='chart icon' width='30' height='30'> " + key1 + " (" + value1 + "번 등장)</div>";
+
+            // 두 번째 데이터
+            var key2 = keys[1];
+            var value2 = data[key2];
+            var html2 = "<div class='container'><img src='/static/images/silver.png' alt='chart icon' width='30' height='30'> " + key2 + " (" + value2 + "번 등장)</div>";
+
+            // 세 번째 데이터
+            var key3 = keys[2];
+            var value3 = data[key3];
+            var html3 = "<div class='container'><img src='/static/images/bronze.png' alt='chart icon' width='30' height='30'> " + key3 + " (" + value3 + "번 등장)</div>";
+
+            // 최종 HTML
+            var html = html1 + html2 + html3;
+
+            // HTML 삽입
+            $("#hall_of_frame").html(html);
+        }
+        
+        // 모달 열기 버튼 이벤트 핸들러
+        $('#open_detail_page').click(function (){
+            $('#first_modal').css({
+                display : 'flex'
+            });
+
+            // 그래프 데이터 가져오기
+            fetchData("http://localhost:8000/winter_modal", createGraph, function(error) {
+                console.log("Error:", error);
+            });
+
+            // 명예의 전당 데이터 가져오기
+            fetchData("http://localhost:8000/winter_hall_of_frame", renderHallOfFrame, function(error) {
+                console.log("Error:", error);
+            });
+        });
+
+        // 모달 닫기 버튼 이벤트 핸들러
+        $('#return_main_page').click(function (){
+            $('#first_modal').css({
+                display : 'none'
+            });
+        });
+    </script>
+</div>

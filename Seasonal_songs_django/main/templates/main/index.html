@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>봄</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sakura.css' %}">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    </head>
+    <body>
+        {% include 'header_s.html' %}
+        {% include 'category_s.html' %}
+
+        <br><br>
+        <div class="parent" >
+            <div class="child">
+                <h4>올해 차트 봄의 시작은 ?!</h4>
+                <img src="{% static '/images/spring_start.jpg' %}" width="220px" height="150">
+                <p>3월 1주</p>
+            </div>
+            <div class="child">
+                <h4>올해 차트 봄의 끝은 ?!</h4>
+                <img src="{% static '/images/spring_end.png' %}" width="220px" height="150">
+                <p>4월 2주</p>
+            </div>
+        </div>
+
+        <br>
+        <div class="box">
+            <p>그래프 들어갈 자리입니다.</p>
+        </div>
+
+        <br>
+        <table style="margin-left:auto;margin-right:auto;"> 
+            <thead>
+                <th>가수</th><th>노래 제목</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>버스커 버스커</td><td>벚꽃 엔딩</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="main_image">
+            <img src="{% static '/images/sakura.png' %}" width="500px" height="300px">
+            <h3 class="main_image_text">
+                온도 : 20℃<br />
+                D-DAY : D-7<br />
+                벚꽃 개화 날짜 : 4월 3일
+            </h3>
+        </div>
+        
+        <!-- <table style="margin-left:auto;margin-right:auto;"> 
+            <thead>
+                <th>벚꽃 개화 날짜</th><th>기온</th><th>D-DAY</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4월3일</td><td>14℃</td><td>D-7</td>
+                </tr>
+            </tbody>
+        </table> -->
+
+        {% include 'footer_s.html' %}
+
+        <div id="sakura-container"></div>
+        <script type="text/javascript" src="/static/javascript/sakura.js"></script>
+        <script>
+            // 페이지 로드 후 실행
+            window.onload = function() {
+                // Sakura 클래스를 사용하여 벚꽃 효과 초기화
+                new Sakura('#sakura-container');
+            };
+        </script>
+    </body>
+    
+</html>
