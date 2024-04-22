@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <title>겨울</title>
+        <link rel="stylesheet" href="{% static 'css/style_winter.css' %}">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    </head>
+    <body>
+        {% include 'header_w.html' %}
+        {% include 'category_w.html' %}
+
+        <br><br>
+        <div class="parent" >
+            <div class="child">
+                <h4>올해 차트 겨울의 시작은 ?!</h4>
+                <img src="{% static '/images/winter_start.png' %}" width="220px" height="150">
+                <p>{% block winter_start %} {% endblock winter_start %}</p>
+            </div>
+            <div class="child">
+                <h4>올해 차트 겨울의 끝은 ?!</h4>
+                <img src="{% static '/images/winter_end.png' %}" width="220px" height="150">
+                <p>{% block winter_end %}{% endblock winter_end %}</p>
+            </div>
+        </div>
+
+        <br>
+        <div class="box" >
+            {% block spring_graph %}{{ graph_html|safe }} {% endblock spring_graph %}
+        </div>
+
+        <br>
+
+        <table style="margin-left:auto;margin-right:auto;"> 
+            <thead>
+                <th>가수</th>
+                <th>노래 제목</th>
+            </thead>
+            <tbody>
+                <tr>
+                    {% block year_song %}                    
+                    {% endblock year_song %}
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="main_image_winter">
+            <img src="{% static '/images/winter_start.jpg' %}" width="500px" height="300px" style="margin-bottom: 50px;">
+            <h4 style="position: absolute;
+                top: 87%;
+                left: 41%;
+                transform: translate( -50%, -50% );
+                color: rgb(255, 255, 255);">
+                온도 :  {% block Temperature %}{% endblock Temperature %}<br />
+                D-DAY : {% block D_day %}{% endblock D_day %}<br />
+                첫눈이 온 날 : {% block snow_day %}{% endblock snow_day %}
+            </h4>
+        </div>
+
+        {% include 'footer_w.html' %}
+
+        <!-- <table style="margin-left:auto;margin-right:auto;"> 
+            <thead>
+                <th>첫눈 날짜</th><th>기온</th><th>D-DAY</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>11월17일</td><td>0℃</td><td>D+1</td>
+                </tr>
+            </tbody>
+        </table> -->
+
+        <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+        <script>
+            var sf = new Snowflakes({
+                color: "#ffffff"
+            });
+        </script>
+    </body>
+    
+</html>
